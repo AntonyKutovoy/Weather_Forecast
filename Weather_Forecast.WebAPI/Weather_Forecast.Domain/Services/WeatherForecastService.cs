@@ -5,10 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Weather_Forecast.WebApi.Models;
-using Weather_Forecast.WebAPI.Interfaces;
+using Weather_Forecast.Domain.Interfaces;
+using Weather_Forecast.Domain.Models;
 
-namespace Weather_Forecast.WebAPI.Services
+namespace Weather_Forecast.Domain.Services
 {
     public class WeatherForecastService : IWeatherForecastService
     {
@@ -25,7 +25,7 @@ namespace Weather_Forecast.WebAPI.Services
             Client = client;
         }
 
-        public async Task<CurrentWeather> GetCurrentWeatherAsync(string city)
+        public async Task<CurrentWeatherDTO> GetCurrentWeatherAsync(string city)
         {
             var urlParameters = $"weather?appid={_apiKey}&q={city}&units=metric";
 
@@ -37,7 +37,7 @@ namespace Weather_Forecast.WebAPI.Services
 
             var json = JObject.Parse(responseString);
 
-            var currentWeather = new CurrentWeather()
+            var currentWeather = new CurrentWeatherDTO()
             {
                 CityId = (long)json.GetValue("id"),
                 City = (string)json.GetValue("name"),

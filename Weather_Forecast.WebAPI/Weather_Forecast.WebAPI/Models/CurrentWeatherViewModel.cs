@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Weather_Forecast.WebApi.Models
+﻿namespace Weather_Forecast.WebApi.Models
 {
-    public abstract class Weather
+    public class CurrentWeatherViewModel
     {
+        public long CityId { get; set; }
+        public string City { get; set; }
         public string Description { get; set; }
         public double Temp { get; set; }
         public int Pressure { get; set; }

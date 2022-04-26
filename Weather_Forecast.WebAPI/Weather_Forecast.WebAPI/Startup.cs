@@ -11,8 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Weather_Forecast.WebAPI.Interfaces;
-using Weather_Forecast.WebAPI.Services;
+using Weather_Forecast.Domain.Interfaces;
+using Weather_Forecast.Domain.Services;
 
 namespace Weather_Forecast.WebAPI
 {
@@ -34,6 +34,7 @@ namespace Weather_Forecast.WebAPI
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Weather_Forecast.WebAPI", Version = "v1" });
             });
+            services.AddAutoMapper(typeof(MappingProfile));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
