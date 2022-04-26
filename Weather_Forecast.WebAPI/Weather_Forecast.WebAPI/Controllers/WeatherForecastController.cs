@@ -1,11 +1,6 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 using Weather_Forecast.Domain.Interfaces;
 using Weather_Forecast.WebApi.Models;
@@ -25,16 +20,28 @@ namespace Weather_Forecast.WebAPI.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("current/{city}")]
-        public async Task<CurrentWeatherViewModel> GetCurrentWeatherAsync(string city)
+        [HttpGet("/save")]
+        public async Task<WeatherViewModel> SaveAndShowCurrentWeatherAsync(string city)
         {
-            return _mapper.Map<CurrentWeatherViewModel>(await _weatherForecastService.GetCurrentWeatherAsync(city));
+            return _mapper.Map<WeatherViewModel>(await _weatherForecastService.SaveAndShowCurrentWeatherAsync(city));
         }
 
-        //[HttpGet("forecast/{city}")]
-        //public async Task<IList<WeatherForecastViewModel>> GetForecastsAsync(string city)
-        //{
-        //    return await _weatherForecastService.GetForecastsAsync(city);
-        //}
+        [HttpGet("/week")]
+        public List<WeatherViewModel> GetWeeklyForecast()
+        {
+            return _mapper.Map<List<WeatherViewModel>>(_weatherForecastService.GetWeeklyForecast());
+        }
+
+        [HttpGet("/month")]
+        public List<WeatherViewModel> GetMonthlyForecast()
+        {
+            return _mapper.Map<List<WeatherViewModel>>(_weatherForecastService.GetMonthlyForecast());
+        }
+
+        [HttpGet("/day")]
+        public List<WeatherViewModel> GetDailyForecast()
+        {
+            return _mapper.Map<List<WeatherViewModel>>(_weatherForecastService.GetDailyForecast());
+        }
     }
 }

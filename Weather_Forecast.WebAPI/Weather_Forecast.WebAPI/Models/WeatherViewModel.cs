@@ -1,14 +1,15 @@
-﻿namespace Weather_Forecast.Domain.Models
+﻿using System;
+
+namespace Weather_Forecast.WebApi.Models
 {
-    public class CurrentWeatherDTO
+    public class WeatherViewModel
     {
-        public long CityId { get; set; }
         public string City { get; set; }
+        public DateTime RequestDate { get; set; }
         public string Description { get; set; }
-        public double Temp { get; set; }
+        public double Tempreture { get; set; }
         public int Pressure { get; set; }
         public int Humidity { get; set; }
         public double Wind { get; set; }
-        public string Icon { get; set; }
     }
 }

@@ -1,16 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Weather_Forecast.DataAccess;
 using Weather_Forecast.Domain.Interfaces;
 using Weather_Forecast.Domain.Services;
 
@@ -27,14 +22,17 @@ namespace Weather_Forecast.WebAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddHttpClient<IWeatherForecastService, WeatherForecastService>();
-            //services.AddTransient<IWeatherForecastService, WeatherForecastService>();
+            services.AddDbContext<DataBaseContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddHttpClient();
+            services.AddTransient<IWeatherForecastService, WeatherForecastService>();
             services.AddControllers();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Weather_Forecast.WebAPI", Version = "v1" });
             });
             services.AddAutoMapper(typeof(MappingProfile));
+            services.AddTransient<IWeatherRepository, WeatherRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
