@@ -3,11 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32228.343
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weather_Forecast.WebAPI", "Weather_Forecast.WebAPI\Weather_Forecast.WebAPI.csproj", "{2A3C081D-C083-4354-841D-B85A1751E1F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Weather_Forecast.WebAPI", "Weather_Forecast.WebAPI\Weather_Forecast.WebAPI.csproj", "{2A3C081D-C083-4354-841D-B85A1751E1F9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{207B7A56-40BC-45A8-B4CF-C82C16C63D70} = {207B7A56-40BC-45A8-B4CF-C82C16C63D70}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weather_Forecast.DataAccess", "Weather_Forecast.DataAccess\Weather_Forecast.DataAccess.csproj", "{207B7A56-40BC-45A8-B4CF-C82C16C63D70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Weather_Forecast.DataAccess", "Weather_Forecast.DataAccess\Weather_Forecast.DataAccess.csproj", "{207B7A56-40BC-45A8-B4CF-C82C16C63D70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weather_Forecast.Domain", "Weather_Forecast.Domain\Weather_Forecast.Domain.csproj", "{89FFBAE1-C199-45EF-83D4-FC8C4D29179B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Weather_Forecast.Domain", "Weather_Forecast.Domain\Weather_Forecast.Domain.csproj", "{89FFBAE1-C199-45EF-83D4-FC8C4D29179B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{207B7A56-40BC-45A8-B4CF-C82C16C63D70} = {207B7A56-40BC-45A8-B4CF-C82C16C63D70}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

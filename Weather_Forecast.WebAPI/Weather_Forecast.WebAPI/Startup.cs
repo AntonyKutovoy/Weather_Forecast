@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Weather_Forecast.WebAPI.Interfaces;
+using Weather_Forecast.WebAPI.Services;
 
 namespace Weather_Forecast.WebAPI
 {
@@ -23,10 +25,10 @@ namespace Weather_Forecast.WebAPI
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddHttpClient<IWeatherForecastService, WeatherForecastService>();
+            //services.AddTransient<IWeatherForecastService, WeatherForecastService>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -34,7 +36,6 @@ namespace Weather_Forecast.WebAPI
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
