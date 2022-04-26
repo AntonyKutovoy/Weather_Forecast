@@ -20,24 +20,28 @@ namespace Weather_Forecast.WebAPI.Controllers
             _mapper = mapper;
         }
 
+        //Узнать погоду по конкретному городу и автоматически сохранить информацию в БД.
         [HttpGet("/save")]
         public async Task<WeatherViewModel> SaveAndShowCurrentWeatherAsync(string city)
         {
             return _mapper.Map<WeatherViewModel>(await _weatherForecastService.SaveAndShowCurrentWeatherAsync(city));
         }
 
+        //Получить список прогнозов погоды в городах добавленных за последнюю неделю.
         [HttpGet("/week")]
         public List<WeatherViewModel> GetWeeklyForecast()
         {
             return _mapper.Map<List<WeatherViewModel>>(_weatherForecastService.GetWeeklyForecast());
         }
 
+        //Получить список прогнозов погоды в городах добавленных за последний месяц.
         [HttpGet("/month")]
         public List<WeatherViewModel> GetMonthlyForecast()
         {
             return _mapper.Map<List<WeatherViewModel>>(_weatherForecastService.GetMonthlyForecast());
         }
 
+        //Получить список прогнозов погоды в городах добавленных за сегодня.
         [HttpGet("/day")]
         public List<WeatherViewModel> GetDailyForecast()
         {
